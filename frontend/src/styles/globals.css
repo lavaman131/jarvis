@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
@@ -104,4 +110,14 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+.record-btn {
+  @apply bg-slate-400;
+  @apply hover:bg-slate-300
+}
+
+.record-btn.active {
+  @apply bg-sky-400;
+  @apply hover:bg-sky-300
 }
