@@ -2,6 +2,9 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
+import { headers } from "next.config";
+
+const API_URL = "http://localhost:8000/upload";
 
 const toggleRecording = (event) => {
   event.currentTarget.classList.toggle("active");
@@ -9,7 +12,7 @@ const toggleRecording = (event) => {
   document.querySelector(".aura").classList.toggle("active");
   if (event.currentTarget.classList.contains("active")) {
     record((blob) => {
-      console.log(blob);
+      sendData(blob);
     });
   }
 };
@@ -39,6 +42,28 @@ function record(callback) {
       };
     })
     .catch((error) => console.error(error));
+}
+
+async function sendData(blob) {
+  const formData = new FormData();
+  formData.append(
+    "file",
+    new File([blob], "audio.ogg", {
+      type: "audio/ogg",
+    })
+  );
+
+  fetch(API_URL, {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Success:", data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 }
 
 export default function Home() {
