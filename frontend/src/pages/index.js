@@ -32,7 +32,11 @@ function record(callback) {
 
       const record_btn = document.querySelector(".record-btn");
       record_btn.addEventListener("click", () => {
-        mediaRecorder.stop();
+        // close all tracks so recording icon disappears
+        const tracks = stream.getTracks();
+        tracks.forEach((track) => {
+          track.stop();
+        });
       });
 
       mediaRecorder.onstop = (e) => {

@@ -20,6 +20,6 @@ app.add_middleware(
 @app.post("/upload")
 async def upload(file: UploadFile):
     song = AudioSegment.from_file(file.file, "ogg")
-    play(song)
+    
     # song.export("test.ogg", format="ogg")
     return {"message": "File received"}
