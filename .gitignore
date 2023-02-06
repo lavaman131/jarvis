@@ -38,3 +38,4 @@ frontend/next-env.d.ts
 # python
 backend/venv
 backend/__pycache__
+backend/temp.ogg
