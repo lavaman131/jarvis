@@ -114,10 +114,26 @@ a {
 
 .record-btn {
   @apply bg-slate-400;
-  @apply hover:bg-slate-300
+  @apply hover:bg-slate-300;
+
 }
 
 .record-btn.active {
+  @apply bg-teal;
+  @apply hover:bg-cyan-400;
+}
+
+.jarvis-img.active {
+  @apply animate-growing;
+}
+
+.aura {
+  @apply bg-slate-400;
+  @apply blur-lg;
+}
+
+.aura.active {
+  @apply animate-pulse;
   @apply bg-sky-400;
-  @apply hover:bg-sky-300
+  @apply blur-3xl;
 }

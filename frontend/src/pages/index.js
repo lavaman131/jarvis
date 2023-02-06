@@ -4,7 +4,41 @@ import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
 
 const toggleRecording = (event) => {
-  event.currentTarget.classList.toggle('active');
+  event.currentTarget.classList.toggle("active");
+  document.querySelector(".jarvis-img").classList.toggle("active");
+  document.querySelector(".aura").classList.toggle("active");
+  if (event.currentTarget.classList.contains("active")) {
+    record((blob) => {
+      console.log(blob);
+    });
+  }
+};
+
+function record(callback) {
+  navigator.mediaDevices
+    .getUserMedia({ audio: true })
+    .then((stream) => {
+      const mediaRecorder = new MediaRecorder(stream);
+      let chunks = [];
+
+      mediaRecorder.start();
+
+      mediaRecorder.ondataavailable = (e) => {
+        chunks.push(e.data);
+      };
+
+      const record_btn = document.querySelector(".record-btn");
+      record_btn.addEventListener("click", () => {
+        mediaRecorder.stop();
+      });
+
+      mediaRecorder.onstop = (e) => {
+        const blob = new Blob(chunks, { type: "audio/ogg; codecs=opus" });
+        chunks = [];
+        callback(blob);
+      };
+    })
+    .catch((error) => console.error(error));
 }
 
 export default function Home() {
@@ -36,11 +70,11 @@ export default function Home() {
       <div className="grid grid-rows-1 h-screen bg-slate-900">
         <div className="flex flex-col gap-12 items-center justify-center">
           <div className="relative w-1/2 lg:w-1/3">
-            <div className="absolute inset-0 rounded-full blur-2xl animate-pulse"></div>
+            <div className="aura absolute inset-0 rounded-full"></div>
             <img
               src="/jarvis.png"
               alt="virtual assistant"
-              className="relative"
+              className="jarvis-img relative"
             ></img>
           </div>
           <button
