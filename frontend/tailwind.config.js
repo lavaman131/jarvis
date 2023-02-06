@@ -18,6 +18,7 @@ module.exports = {
       },
       animation: {
         growing: "grow 2s linear infinite",
+        slow_spin: "spin 10s linear infinite"
       },
     },
   },

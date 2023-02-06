@@ -123,8 +123,12 @@ a {
   @apply hover:bg-cyan-400;
 }
 
+.jarvis-img {
+  @apply animate-growing
+}
+
 .jarvis-img.active {
-  @apply animate-growing;
+  @apply ease-in animate-slow_spin;
 }
 
 .aura {

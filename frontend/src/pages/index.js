@@ -6,11 +6,11 @@ import { headers } from "next.config";
 
 const API_URL = "http://localhost:8000/upload";
 
-const toggleRecording = (event) => {
-  event.currentTarget.classList.toggle("active");
+const toggleRecording = () => {
+  document.querySelector(".record-btn").classList.toggle("active");
   document.querySelector(".jarvis-img").classList.toggle("active");
   document.querySelector(".aura").classList.toggle("active");
-  if (event.currentTarget.classList.contains("active")) {
+  if (document.querySelector(".record-btn").classList.contains("active")) {
     record((blob) => {
       sendData(blob);
     });
@@ -96,8 +96,8 @@ export default function Home() {
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      <div className="grid grid-rows-1 h-screen bg-slate-900">
-        <div className="flex flex-col gap-12 items-center justify-center">
+
+        <div className="flex flex-col gap-6 items-center justify-center h-screen bg-slate-900">
           <div className="relative w-1/2 lg:w-1/3">
             <div className="aura absolute inset-0 rounded-full"></div>
             <img
@@ -126,8 +126,12 @@ export default function Home() {
             </svg>
             Ask Jarvis
           </button>
-        </div>
-      </div>
+          <div className="flex flex-row gap-2">
+          <span className="text-md md:text-lg lg:text-xl italic">The "all-knowing" course assistant.</span>
+          <span className="text-md md:text-lg lg:text-xl">🔮</span>
+          </div>
+        </div>    
+
     </>
   );
 }
