@@ -1,2 +1,2 @@
 # Jarvis
-![](/images/jarvis_home.png)
+![](/images/jarvis.png)
