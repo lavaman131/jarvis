@@ -127,7 +127,7 @@ export default function Home() {
             Ask Jarvis
           </button>
           <div className="flex flex-row gap-2">
-          <span className="text-md md:text-lg lg:text-xl italic">The "all-knowing" course assistant.</span>
+          <span className="text-md md:text-lg lg:text-xl italic">The "all-knowing" AI assistant.</span>
           <span className="text-md md:text-lg lg:text-xl">🔮</span>
           </div>
         </div>    
