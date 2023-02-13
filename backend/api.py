@@ -3,6 +3,11 @@ from starlette.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydub import AudioSegment
 import whisper
+import os
+import openai
+import dotenv
+config = dotenv.dotenv_values(".env")
+openai.api_key = config["OPENAI_API_KEY"]
 
 app = FastAPI()
 
@@ -36,4 +41,11 @@ async def upload(file: UploadFile):
     options = whisper.DecodingOptions(task="transcribe", language="en", fp16=False) # get rid of FP32 warning
     result = whisper.decode(model, mel, options)
     result = model.transcribe("temp.ogg")
-    return {"transcription": result["text"]}
+    
+    response = openai.Completion.create(
+            model="text-davinci-003",
+            prompt=result["text"],
+            temperature=0.6,
+            max_tokens=1024,
+            n=1)
+    return {"answer": response["choices"][0]["text"].replace("\n\n", "")}

@@ -39,3 +39,6 @@ frontend/next-env.d.ts
 backend/venv
 backend/__pycache__
 backend/temp.ogg
+
+# API key
+backend/.env

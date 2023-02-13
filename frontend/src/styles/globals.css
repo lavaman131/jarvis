@@ -141,3 +141,9 @@ a {
   @apply bg-sky-400;
   @apply blur-3xl;
 }
+
+.aura.speaking {
+  @apply animate-pulse;
+  @apply bg-green-500;
+  @apply blur-3xl;
+}
