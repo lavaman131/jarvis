@@ -42,3 +42,8 @@ backend/temp.ogg
 
 # API key
 backend/.env
+
+# npm
+frontend/package-lock.json
+
+.space

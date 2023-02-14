@@ -42,10 +42,14 @@ async def upload(file: UploadFile):
     result = whisper.decode(model, mel, options)
     result = model.transcribe("temp.ogg")
     
+    if result["text"] == "":
+        return {"answer": "I'm not sure I understand."}
+    
     response = openai.Completion.create(
-            model="text-davinci-003",
+            model="text-davinci-001",
             prompt=result["text"],
             temperature=0.6,
             max_tokens=1024,
             n=1)
+    
     return {"answer": response["choices"][0]["text"].replace("\n\n", "")}

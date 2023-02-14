@@ -144,6 +144,6 @@ a {
 
 .aura.speaking {
   @apply animate-pulse;
-  @apply bg-green-500;
+  @apply bg-violet-400;
   @apply blur-3xl;
 }

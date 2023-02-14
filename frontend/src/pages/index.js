@@ -6,23 +6,6 @@ import Head from "next/head";
 
 const API_URL = "http://localhost:8000/upload";
 
-// const toggleRecording = () => {
-//   const record_btn = document.querySelector(".record-btn");
-//   const jarvis_img = document.querySelector(".jarvis-img");
-//   const aura = document.querySelector(".aura");
-//   aura.classList.toggle("active");
-//   jarvis_img.classList.toggle("active");
-//   record_btn.classList.toggle("active");
-
-//   if (record_btn.classList.contains("active")) {
-//     record((blob) => {
-//       sendData(blob, (text) => {
-//         console.log(text);
-//       });
-//     });
-//   }
-// };
-
 const toggleRecording = () => {
   const record_btn = document.querySelector(".record-btn");
   const jarvis_img = document.querySelector(".jarvis-img");
@@ -33,6 +16,8 @@ const toggleRecording = () => {
   if (record_btn.classList.contains("active")) {
     record((blob) => {
       sendData(blob, (text) => {
+        document.getElementById("record-btn").disabled = false;
+        record_btn.classList.add("cursor-wait");
         // console.log(text);
         if ("speechSynthesis" in window) {
           // Speech Synthesis supported 🎉
@@ -40,13 +25,13 @@ const toggleRecording = () => {
           // console.log(text["answer"]);
           msg.text = text["answer"];
           msg.rate = 0.8;
-
           window.speechSynthesis.speak(msg);
           msg.addEventListener("start", (event) => {
             aura.classList.add("speaking");
           });
           msg.addEventListener("end", (event) => {
             aura.classList.remove("speaking");
+            document.getElementById("record-btn").disabled = false;
           });
         } else {
           // Speech Synthesis Not Supported 😣
@@ -149,7 +134,8 @@ export default function Home() {
         </div>
         <button
           onClick={toggleRecording}
-          className="record-btn font-exo font-bold inline-flex items-center text-slate-800 text-2xl md:text-3xl lg:text-4xl bg-teal px-4 py-2 rounded-lg transition delay-100 duration-150 ease-in-out hover:scale-110"
+          id="record-btn"
+          className="record-btn font-exo font-bold inline-flex items-center text-slate-800 text-2xl md:text-3xl lg:text-4xl bg-teal px-4 py-2 rounded-lg transition delay-100 duration-150 ease-in-out hover:scale-110 disabled:scale-100 disabled:cursor-wait"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -169,7 +155,7 @@ export default function Home() {
         </button>
         <div className="flex flex-row gap-2">
           <span className="text-md md:text-lg lg:text-xl italic">
-            The "all-knowing" AI assistant.
+            The &quot;all-knowing&quot; AI assistant.
           </span>
           <span className="text-md md:text-lg lg:text-xl">🔮</span>
         </div>
