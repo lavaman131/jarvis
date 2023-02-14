@@ -5,7 +5,16 @@ micros:
     src: frontend
     engine: next
     primary: true
+    include:
+      - public/
+      - .next/standalone/
+      - src/styles/
   - name: backend
     src: backend
     engine: python3.9
     primary: false
+    presets:
+      env:
+        - name: OPENAI_API_KEY
+          description: Your OpenAI key to access the API.
+          default: ""

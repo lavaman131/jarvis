@@ -1,10 +1,10 @@
 import Head from "next/head";
-// import Image from "next/image";
+import Image from "next/image";
 // import { Inter } from "@next/font/google";
 // import styles from "@/styles/Home.module.css";
 // import { headers } from "next.config";
 
-const API_URL = "http://localhost:8000/upload";
+const API_URL = "/backend/upload";
 
 const toggleRecording = () => {
   const record_btn = document.querySelector(".record-btn");
@@ -126,11 +126,13 @@ export default function Home() {
       <div className="flex flex-col gap-6 items-center justify-center h-screen bg-slate-900">
         <div className="relative w-1/2 lg:w-1/3">
           <div className="aura absolute inset-0 rounded-full"></div>
-          <img
-            src="/jarvis.png"
+          <Image
+            src={`/jarvis.png`}
+            width={500}
+            height={500}
             alt="virtual assistant"
             className="jarvis-img relative"
-          ></img>
+          />
         </div>
         <button
           onClick={toggleRecording}

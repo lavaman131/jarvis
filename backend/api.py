@@ -1,13 +1,10 @@
 from fastapi import FastAPI, UploadFile
-from starlette.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydub import AudioSegment
 import whisper
-import os
 import openai
-import dotenv
-config = dotenv.dotenv_values(".env")
-openai.api_key = config["OPENAI_API_KEY"]
+import os
+openai.api_key = os.environ["OPENAI_API_KEY"]
 
 app = FastAPI()
 
