@@ -3,3 +3,4 @@ pydub==0.25.1
 openai-whisper==20230124
 openai==0.26.5
 uvicorn==0.20.0
+python-multipart==0.0.5
