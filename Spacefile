@@ -13,6 +13,9 @@ micros:
     src: backend
     engine: python3.9
     primary: false
+    include:
+      - api.py
+      - requirements.txt
     presets:
       env:
         - name: OPENAI_API_KEY
