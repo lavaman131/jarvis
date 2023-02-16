@@ -1,0 +1,29 @@
+{
+    "configurations": [
+        {
+            "name": "Cloud Run: Run/Debug Locally",
+            "type": "cloudcode.cloudrun",
+            "request": "launch",
+            "build": {
+                "docker": {
+                    "path": "backend/Dockerfile"
+                }
+            },
+            "image": "jarvis",
+            "service": {
+                "name": "jarvis",
+                "containerPort": 8080,
+                "resources": {
+                    "limits": {
+                        "cpu": 1,
+                        "memory": "1000Mi"
+                    }
+                }
+            },
+            "target": {
+                "minikube": {}
+            },
+            "watch": true
+        }
+    ]
+}

@@ -37,10 +37,10 @@ frontend/next-env.d.ts
 
 # python
 backend/venv
-backend/__pycache__
+backend/app/__pycache__
 
 # API key
-backend/.env
+backend/app/.env
 
 # npm
 frontend/package-lock.json

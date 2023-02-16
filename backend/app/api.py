@@ -4,19 +4,23 @@ from pydub import AudioSegment
 import whisper
 import openai
 import os
-openai.api_key = os.getenv("OPENAI_API_KEY")
+from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv(".env")
+
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 app = FastAPI()
 
 origins = [
-    "*",
+    "*"
 ]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["POST"],
     allow_headers=["*"],
 )
 
@@ -24,6 +28,9 @@ model = whisper.load_model("tiny")
     
 @app.post("/upload")
 async def upload(file: UploadFile):
+    if not openai.api_key:
+        return {"answer": "Something went wrong. Try again."}
+    
     audio = AudioSegment.from_file(file.file, "ogg")
     audio.export("temp.ogg", format="ogg")
     
@@ -38,6 +45,8 @@ async def upload(file: UploadFile):
     options = whisper.DecodingOptions(task="transcribe", language="en", fp16=False) # get rid of FP32 warning
     result = whisper.decode(model, mel, options)
     result = model.transcribe("temp.ogg")
+    
+    Path("temp.ogg").unlink(missing_ok=True)
     
     if result["text"] == "":
         return {"answer": "I'm not sure I understand."}

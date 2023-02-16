@@ -4,7 +4,7 @@ import Image from "next/image";
 // import styles from "@/styles/Home.module.css";
 // import { headers } from "next.config";
 
-const API_URL = "https://jarvis-inference.onrender.com/upload";
+const API_URL = "http://localhost:8080/upload";
 
 const toggleRecording = () => {
   const record_btn = document.querySelector(".record-btn");
@@ -17,7 +17,7 @@ const toggleRecording = () => {
     record((blob) => {
       sendData(blob, (text) => {
         document.getElementById("record-btn").disabled = false;
-        record_btn.classList.add("cursor-wait");
+        // record_btn.classList.add("cursor-wait");
         // console.log(text);
         if ("speechSynthesis" in window) {
           // Speech Synthesis supported 🎉
@@ -74,7 +74,7 @@ function record(callback) {
 }
 
 async function sendData(blob, callback) {
-  const formData = new FormData();
+  let formData = new FormData();
   formData.append(
     "file",
     new File([blob], "audio.ogg", {
@@ -82,10 +82,13 @@ async function sendData(blob, callback) {
     })
   );
 
-  fetch(API_URL, {
+  const requestOptions = {
     method: "POST",
     body: formData,
-  })
+    redirect: "follow",
+  };
+
+  fetch(API_URL, requestOptions)
     .then((response) => response.json())
     .then((data) => {
       console.log("Success");
