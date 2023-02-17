@@ -14,7 +14,7 @@ app = FastAPI()
 
 origins = [
     "jarvis-kappa.vercel.app",
-    "http://localhost:3000/"
+    "http://localhost:3000"
 ]
 
 app.add_middleware(
@@ -27,6 +27,10 @@ app.add_middleware(
 
 model = whisper.load_model("tiny")
     
+@app.get("/")
+async def main():
+    return {"message": "Hello World"}
+
 @app.post("/upload")
 async def upload(file: UploadFile):
     if not openai.api_key:

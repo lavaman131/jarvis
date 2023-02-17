@@ -4,7 +4,7 @@ import Image from "next/image";
 // import styles from "@/styles/Home.module.css";
 // import { headers } from "next.config";
 
-const API_URL = "https://jarvis-inference-odgkx4s5jq-uk.a.run.app/upload";
+const API_URL = "http://localhost:8080/upload";
 
 const toggleRecording = () => {
   const record_btn = document.querySelector(".record-btn");
@@ -83,9 +83,17 @@ async function sendData(blob, callback) {
   );
 
   const requestOptions = {
+    headers: {
+      "Access-Control-Allow-Origin": [
+        "http://localhost:3000",
+        "jarvis-kappa.vercel.app",
+      ],
+      "Access-Control-Allow-Headers": "*",
+    },
     method: "POST",
     body: formData,
     redirect: "follow",
+    mode: "cors",
   };
 
   fetch(API_URL, requestOptions)
