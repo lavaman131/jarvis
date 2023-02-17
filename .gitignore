@@ -42,7 +42,4 @@ backend/app/__pycache__
 # API key
 backend/app/.env
 
-# npm
-frontend/package-lock.json
-
 .vscode
