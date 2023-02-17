@@ -86,7 +86,7 @@ async function sendData(blob, callback) {
     headers: {
       "Access-Control-Allow-Origin": [
         "http://localhost:3000",
-        "jarvis-kappa.vercel.app",
+        "https://jarvis-kappa.vercel.app",
       ],
       "Access-Control-Allow-Headers": "*",
     },

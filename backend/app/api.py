@@ -13,7 +13,7 @@ openai.api_key = os.environ.get("OPENAI_API_KEY")
 app = FastAPI()
 
 origins = [
-    "jarvis-kappa.vercel.app",
+    "https://jarvis-kappa.vercel.app",
     "http://localhost:3000"
 ]
 
