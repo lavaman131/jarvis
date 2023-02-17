@@ -4,7 +4,7 @@ import Image from "next/image";
 // import styles from "@/styles/Home.module.css";
 // import { headers } from "next.config";
 
-const API_URL = "http://localhost:8080/upload";
+const API_URL = "https://jarvis-inference-odgkx4s5jq-uk.a.run.app/upload";
 
 const toggleRecording = () => {
   const record_btn = document.querySelector(".record-btn");
