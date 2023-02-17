@@ -6,12 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "predeploy": "npm run build && cp CNAME ./build",
+    "deploy": "gh-pages -d build"
   },
+  "homepage": "https://alexlavaee.me/jarvis/",
   "dependencies": {
     "@next/font": "13.1.6",
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",
+    "gh-pages": "^5.0.0",
     "next": "13.1.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
