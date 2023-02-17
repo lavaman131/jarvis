@@ -4,13 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "export": "next export",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "predeploy": "npm run build && cp CNAME ./build",
-    "deploy": "gh-pages -d build"
+    "start": "next start"
   },
-  "homepage": "https://alexlavaee.me/jarvis/",
   "dependencies": {
     "@next/font": "13.1.6",
     "eslint": "8.33.0",
