@@ -33,9 +33,6 @@ async def main():
 
 @app.post("/upload")
 async def upload(file: UploadFile):
-    if not openai.api_key:
-        return {"answer": "Something went wrong. Try again."}
-    
     audio = AudioSegment.from_file(file.file, "ogg")
     audio.export("temp.ogg", format="ogg")
     
@@ -50,17 +47,17 @@ async def upload(file: UploadFile):
     options = whisper.DecodingOptions(task="transcribe", language="en", fp16=False) # get rid of FP32 warning
     result = whisper.decode(model, mel, options)
     result = model.transcribe("temp.ogg")
-    
     Path("temp.ogg").unlink(missing_ok=True)
     
-    if result["text"] == "":
-        return {"answer": "I'm not sure I understand."}
+    try:
+        response = openai.Completion.create(
+                model="text-davinci-001",
+                prompt=result["text"],
+                temperature=0.6,
+                max_tokens=1024,
+                n=1)
+        
+        return {"answer": response["choices"][0]["text"].replace("\n\n", "")}
     
-    response = openai.Completion.create(
-            model="text-davinci-001",
-            prompt=result["text"],
-            temperature=0.6,
-            max_tokens=1024,
-            n=1)
-    
-    return {"answer": response["choices"][0]["text"].replace("\n\n", "")}
+    except openai.error.OpenAIError as e:
+        return {"answer": "Something went wrong. Try again later."}
