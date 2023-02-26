@@ -26,10 +26,6 @@ app.add_middleware(
 )
 
 model = whisper.load_model("tiny")
-    
-@app.get("/")
-async def main():
-    return {"message": "Hello World"}
 
 @app.post("/upload")
 async def upload(file: UploadFile):
