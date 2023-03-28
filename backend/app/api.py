@@ -17,14 +17,6 @@ origins = [
     "http://localhost:3000"
 ]
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["POST"],
-    allow_headers=["*"],
-)
-
 model = whisper.load_model("tiny")
 
 @app.post("/upload")
@@ -53,7 +45,4 @@ async def upload(file: UploadFile):
                 max_tokens=1024,
                 n=1)
         
-        return {"answer": response["choices"][0]["text"].replace("\n\n", "")}
-    
-    except openai.error.OpenAIError as e:
-        return {"answer": "Something went wrong. Try again later."}
+        return {"answer": ""}
