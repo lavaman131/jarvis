@@ -1,9 +1,4 @@
-# Jarvis
-![](/images/jarvis.png)
-
-## 🚀 Getting Started Locally 
-### Fork the repo:
-![](/images/fork.png)
+## 💻 Getting Started Locally Debugging
 ### Clone this Repo:
 ```bash
 git clone https://github.com/lavaman131/jarvis.git
@@ -47,4 +42,8 @@ npm run dev
 ### Load the website:
 http://localhost:3000/
 
-## 🎉 Ask Jarvis your questions
+## 🪲 Find the bug in the code
+### Tips:
+* Use print statements
+* Try using a debugger to step through your code
+* Check the console of your browser for logs
