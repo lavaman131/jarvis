@@ -12,11 +12,6 @@ openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 app = FastAPI()
 
-origins = [
-    "https://jarvis-kappa.vercel.app",
-    "http://localhost:3000"
-]
-
 model = whisper.load_model("tiny")
 
 @app.post("/upload")
@@ -44,5 +39,7 @@ async def upload(file: UploadFile):
                 temperature=0.6,
                 max_tokens=1024,
                 n=1)
+        return {"answer": response["choices"][0]["text"].replace("\n\n", "")}
         
-        return {"answer": ""}
+    except openai.error.OpenAIError as e:
+        return {"answer": "Something went wrong. Try again later."}
