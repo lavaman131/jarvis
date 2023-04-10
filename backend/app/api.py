@@ -56,7 +56,7 @@ async def upload(file: UploadFile):
             messages=[
                 {
                     "role": "system",
-                    "content": "You are a helpful assistant.",
+                    "content": "You are a helpful AI assistant named Jarvis.",
                 },
                 {"role": "user", "content": result["text"]},
             ],

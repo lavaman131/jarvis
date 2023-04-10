@@ -84,17 +84,17 @@ async function sendData(blob, callback) {
   );
 
   const requestOptions = {
-    headers: {
-      "Access-Control-Allow-Origin": [
-        "http://localhost:3000",
-        "https://jarvis-kappa.vercel.app",
-      ],
-      "Access-Control-Allow-Headers": "*",
-    },
+    // headers: {
+    //   "Access-Control-Allow-Origin": [
+    //     "http://localhost:3000",
+    //     "https://jarvis-kappa.vercel.app",
+    //   ],
+    //   "Access-Control-Allow-Headers": "*",
+    // },
     method: "POST",
     body: formData,
     redirect: "follow",
-    mode: "cors",
+    // mode: "cors",
   };
 
   fetch(API_URL, requestOptions)
